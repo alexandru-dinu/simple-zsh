@@ -113,4 +113,5 @@ done
 
 
 # finally, source theme
+autoload -Uz colors && colors
 source $ZSH/theme.zsh
