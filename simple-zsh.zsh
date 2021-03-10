@@ -87,11 +87,16 @@ function git_current_branch() {
     echo ${ref#refs/heads/}
 }
 
+function git_is_dirty() {
+    local ret=$(__git_prompt_git status --porcelain 2> /dev/null | tail -1)
+    [[ -n $ret ]] && echo 'true' || echo 'false'
+}
+
 function git_commits_ahead() {
     if __git_prompt_git rev-parse --git-dir &>/dev/null; then
         local commits="$(__git_prompt_git rev-list --count @{upstream}..HEAD 2>/dev/null)"
         if [[ -n "$commits" && "$commits" != 0 ]]; then
-            echo "$ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX$commits$ZSH_THEME_GIT_COMMITS_AHEAD_SUFFIX"
+            echo "$commits"
         fi
     fi
 }

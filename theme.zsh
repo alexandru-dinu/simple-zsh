@@ -5,6 +5,7 @@ COLOR_INFO="195"
 function git_info() {
     local br="$(git_current_branch)"
     if [[ -n $br ]]; then
+        [[ $(git_is_dirty) = "true" ]] && br+="*"
         echo "%F{$COLOR_INFO}$br%f"
     fi
 }
