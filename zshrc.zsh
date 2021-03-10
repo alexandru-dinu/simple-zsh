@@ -24,4 +24,4 @@ COMPLETION_WAITING_DOTS="true"
 # plugin array
 plugins=(zshmarks zsh-autosuggestions)
 
-source $ZSH/simple-zsh.sh
+source $ZSH/simple-zsh.zsh
