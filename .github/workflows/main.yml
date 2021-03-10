@@ -1,0 +1,34 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Set up git repository
+        uses: actions/checkout@v2
+        with:
+            submodules: true
+      - name: Install zsh
+        if: runner.os == 'Linux'
+        run: sudo apt-get update; sudo apt-get install zsh
+      # - name: Test installer
+      #   run: sh ./tools/install.sh
+      - name: Check syntax
+        run: |
+          for file in ./simple-zsh.sh \
+                      ./lib/*.zsh \
+                      ./plugins/*/*.plugin.zsh \
+                      ./plugins/*/_* \
+                      ./theme.zsh \
+                      ./zshrc.zsh; do
+            zsh -n "$file" || return 1
+          done
+

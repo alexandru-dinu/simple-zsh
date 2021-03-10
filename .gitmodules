@@ -1,0 +1,6 @@
+[submodule "plugins/zsh-autosuggestions"]
+	path = plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "plugins/zshmarks"]
+	path = plugins/zshmarks
+	url = https://github.com/jocelynmallon/zshmarks
