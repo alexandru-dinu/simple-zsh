@@ -19,8 +19,6 @@ jobs:
       - name: Install zsh
         if: runner.os == 'Linux'
         run: sudo apt-get update; sudo apt-get install zsh
-      # - name: Test installer
-      #   run: sh ./tools/install.sh
       - name: Check syntax
         run: |
           for file in ./simple-zsh.zsh \
@@ -30,4 +28,5 @@ jobs:
                       ./zshrc.zsh; do
             zsh -n "$file" || return 1
           done
-
+      - name: Test installer
+        run: sh ./install.sh

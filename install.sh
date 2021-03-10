@@ -9,5 +9,9 @@ git clone --depth=1 --recurse-submodules --remote-submodules \
 
 cp $SIMPLE_ZSH_DIR/zshrc.zsh $HOME/.zshrc
 
-# TODO: add RUNSH var, don't do it by default
-exec zsh -l
+# run only if stdin refers to a terminal
+if [ -t 0 ]; then
+    exec zsh -l
+else
+    echo "Done. Run zsh manually."
+fi
