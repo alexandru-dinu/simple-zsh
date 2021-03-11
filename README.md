@@ -4,6 +4,7 @@
 
 A minimalistic zsh framework combining ideas from [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and [pure](https://github.com/sindresorhus/pure).
 
+
 ## Getting Started
 
 ### Prerequisites
@@ -14,3 +15,10 @@ A minimalistic zsh framework combining ideas from [oh-my-zsh](https://github.com
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/alexandru-dinu/simple-zsh/main/install.sh)"
 ```
+
+
+## Plugins
+
+- Plugins can be added in the [plugins](https://github.com/alexandru-dinu/simple-zsh/tree/main/plugins) directory, each one having an entrypoint `X/X.plugin.zsh`.
+- Enabling a plugin is done by adding it to the `plugins` array defined in `zshrc`.
+- By default, [zshmarks](https://github.com/jocelynmallon/zshmarks) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) are enabled.
