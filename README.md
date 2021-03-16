@@ -22,3 +22,4 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/alexandru-dinu/simple-zsh/
 - Plugins can be added in the [plugins](https://github.com/alexandru-dinu/simple-zsh/tree/main/plugins) directory, each one having an entrypoint `X/X.plugin.zsh`.
 - Enabling a plugin is done by adding it to the `plugins` array defined in `zshrc`.
 - By default, [zshmarks](https://github.com/jocelynmallon/zshmarks) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) are enabled.
+- [`fzf`](https://github.com/junegunn/fzf#using-git) can be installed manually.
