@@ -17,13 +17,9 @@ function _conda_info() {
     fi
 }
 
-local ret_status="%(?:%F{$COLOR_MAIN}:%F{$COLOR_ERROR})❯%f"
-local current_path="%F{$COLOR_MAIN}%3~%f"
-local nl=$'\n'
-
-PROMPT='${nl}'
-PROMPT+='${current_path} '
-[[ $ENABLE_GIT_INFO = "true" ]] && PROMPT+='$(_git_info) '
-[[ $ENABLE_CONDA_INFO = "true" ]] && PROMPT+='$(_conda_info) '
-PROMPT+='${nl}'
-PROMPT+='${ret_status} '
+PROMPT=$'\n'
+PROMPT+='%F{$COLOR_MAIN}%3~%f '
+[ $ENABLE_GIT_INFO = "true" ] && PROMPT+='$(_git_info) '
+[ $ENABLE_CONDA_INFO = "true" ] && PROMPT+='$(_conda_info) '
+PROMPT+=$'\n'
+PROMPT+='%(?:%F{$COLOR_MAIN}:%F{$COLOR_ERROR})${PROMPT_ARROW:-❯}%f '

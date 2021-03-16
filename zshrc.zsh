@@ -4,10 +4,11 @@ export LC_ALL=$LANG
 export ZSH=$HOME/.zsh/simple-zsh
 export ZSH_CACHE_DIR=$HOME/.zsh/cache
 
-CASE_SENSITIVE="false"
+ENABLE_CASE_SENSITIVE="false"
 ENABLE_CORRECTION="true"
 ENABLE_GIT_INFO="true"
 ENABLE_CONDA_INFO="true"
+ENABLE_VI_MODE="true"
 
 # plugin array
 plugins=(zshmarks zsh-autosuggestions)

@@ -3,9 +3,11 @@ for p in $plugins; do
     fpath=($ZSH/plugins/$p $fpath)
 done
 
-## completion
+zmodload zsh/complist
+zmodload zsh/zle
+
+autoload -Uz colors && colors
 autoload -Uz compinit && compinit
-zmodload -i zsh/complist
 
 unsetopt menu_complete      # do not autoselect the first completion entry
 unsetopt flowcontrol        # disable start/stop flow control (^S/^Q)
@@ -15,7 +17,7 @@ setopt always_to_end        # move cursor to the end of the word on completion
 setopt interactive_comments # allow comments
 setopt prompt_subst         # enable parameter expansion
 
-if [[ "$CASE_SENSITIVE" = "true" ]]; then
+if [[ "$ENABLE_CASE_SENSITIVE" = "true" ]]; then
     zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 else
     zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -76,6 +78,24 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt share_history          # share command history data
 
+# vi-mode
+if [[ "$ENABLE_VI_MODE" = "true" ]]; then
+    bindkey -v
+    export KEYTIMEOUT=1
+
+    bindkey '^a' beginning-of-line
+    bindkey '^e' end-of-line
+    bindkey '^r' history-incremental-search-backward
+    bindkey '^s' history-incremental-search-forward
+
+    function zle-line-init zle-keymap-select {
+        PROMPT_ARROW="${${KEYMAP/vicmd/❮}/(main|viins)/❯}"
+        zle reset-prompt
+    }
+    zle -N zle-line-init
+    zle -N zle-keymap-select
+fi
+
 ## git
 function __git_prompt_git() {
     GIT_OPTIONAL_LOCKS=0 command git "$@"
@@ -126,6 +146,5 @@ alias s="bookmark"
 alias d="deletemark"
 alias l="showmarks | sort -k1 | sed 's/\t\t/: /g' | column -t -s':'"
 
-# finally, source theme
-autoload -Uz colors && colors
+# source theme
 source $ZSH/theme.zsh
