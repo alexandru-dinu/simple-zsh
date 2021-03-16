@@ -6,6 +6,8 @@ export ZSH_CACHE_DIR=$HOME/.zsh/cache
 
 CASE_SENSITIVE="false"
 ENABLE_CORRECTION="true"
+ENABLE_GIT_INFO="true"
+ENABLE_CONDA_INFO="true"
 
 # plugin array
 plugins=(zshmarks zsh-autosuggestions)

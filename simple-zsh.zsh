@@ -13,6 +13,7 @@ setopt auto_menu            # show completion menu on successive tab press
 setopt complete_in_word     # allow completion from within a word
 setopt always_to_end        # move cursor to the end of the word on completion
 setopt interactive_comments # allow comments
+setopt prompt_subst         # enable parameter expansion
 
 if [[ "$CASE_SENSITIVE" = "true" ]]; then
     zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
