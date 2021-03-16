@@ -99,14 +99,17 @@ function showmarks() {
         bookmark_line=${bookmark_array[(r)$bookmark_name]}
         bookmark_path="${bookmark_line%%|*}"
         bookmark_path="${bookmark_path/\$HOME/~}"
-        printf "%s \n" $bookmark_path
+        echo $bookmark_path
     else
+        local out=""
         for bookmark_line in $bookmark_array; do
             bookmark_path="${bookmark_line%%|*}"
             bookmark_path="${bookmark_path/\$HOME/~}"
             bookmark_name="${bookmark_line#*|}"
-            printf "%s\t\t%s\n" "$bookmark_name" "$bookmark_path"
+            # printf "%s: %s\n" "$bookmark_name" "$bookmark_path"
+            out+="$bookmark_name: $bookmark_path\n"
         done
+        echo "$out" | sort -k1 | column -t -s':'
     fi
 }
 

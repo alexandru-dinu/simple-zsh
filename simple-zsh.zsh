@@ -144,7 +144,7 @@ done
 alias g="jump"
 alias s="bookmark"
 alias d="deletemark"
-alias l="showmarks | sort -k1 | sed 's/\t\t/: /g' | column -t -s':'"
+alias l="showmarks"
 
 # source theme
 source $ZSH/theme.zsh
