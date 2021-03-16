@@ -11,10 +11,14 @@ autoload -Uz compinit && compinit
 
 unsetopt menu_complete      # do not autoselect the first completion entry
 unsetopt flowcontrol        # disable start/stop flow control (^S/^Q)
+
 setopt auto_menu            # show completion menu on successive tab press
 setopt complete_in_word     # allow completion from within a word
 setopt always_to_end        # move cursor to the end of the word on completion
 setopt interactive_comments # allow comments
+setopt auto_pushd           # make cd push the old dir onto the stack
+setopt pushd_ignore_dups    # don't push multiple copies of the same dir
+setopt pushdminus           # exchange the meaning of +/- when used with a number to specify a dir in the stack
 setopt prompt_subst         # enable parameter expansion
 
 if [[ "$ENABLE_CASE_SENSITIVE" = "true" ]]; then
