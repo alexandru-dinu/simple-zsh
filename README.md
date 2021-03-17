@@ -23,3 +23,14 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/alexandru-dinu/simple-zsh/
 - Enabling a plugin is done by adding it to the `plugins` array defined in `zshrc`.
 - By default, [zshmarks](https://github.com/jocelynmallon/zshmarks) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) are enabled.
 - [fzf](https://github.com/junegunn/fzf#using-git) may be installed manually.
+
+## Performance
+```
+num  calls                time                       self            name
+-----------------------------------------------------------------------------------
+ 1)    1          24.44    24.44   84.08%     24.44    24.44   84.08%  compinit
+ 2)    1           4.17     4.17   14.34%      4.17     4.17   14.34%  colors
+ 3)    1           0.26     0.26    0.90%      0.26     0.26    0.90%  add-zsh-hook
+ 4)    1           0.18     0.18    0.61%      0.18     0.18    0.61%  (anon)
+ 5)    1           0.02     0.02    0.07%      0.02     0.02    0.07%  bashcompinit
+```
