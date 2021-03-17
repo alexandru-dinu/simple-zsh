@@ -144,6 +144,9 @@ for p in $plugins; do
 done
 
 # nicer defaults
+alias ls='ls --color=tty'
+alias ll='ls -lah'
+alias diff='diff --color'
 alias grep='grep --color=auto --exclude-dir={.git}'
 
 # zshmarks
