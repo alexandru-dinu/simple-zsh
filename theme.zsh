@@ -1,6 +1,6 @@
-COLOR_MAIN="109"
+COLOR_MAIN="152"
 COLOR_ERROR="009"
-COLOR_INFO="195"
+COLOR_INFO="007"
 
 function _git_info() {
     local br="$(git_current_branch)"
