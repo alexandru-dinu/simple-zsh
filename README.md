@@ -8,7 +8,7 @@ A minimalistic zsh framework combining ideas from [oh-my-zsh](https://github.com
 ## Getting Started
 
 ### Prerequisites
-- zsh 5.2+
+- zsh 5.3+
 - git 2.22+
 
 ### Install
