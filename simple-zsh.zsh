@@ -143,6 +143,9 @@ for p in $plugins; do
     source $ZSH/plugins/$p/$p.plugin.zsh
 done
 
+# nicer defaults
+alias grep='grep --color=auto --exclude-dir={.git}'
+
 # zshmarks
 alias g="jump"
 alias s="bookmark"
