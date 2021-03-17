@@ -1,6 +1,6 @@
 # add plugin-dirs to fpath
 for p in $plugins; do
-    fpath=($ZSH/plugins/$p $fpath)
+    fpath=($ZSH_FRAMEWORK/plugins/$p $fpath)
 done
 
 zmodload zsh/complist
@@ -24,7 +24,7 @@ setopt pushd_ignore_dups    # don't push multiple copies of the same dir
 setopt pushdminus           # exchange the meaning of +/- when used with a number to specify a dir in the stack
 setopt prompt_subst         # enable parameter expansion
 
-if [[ "$ENABLE_CASE_SENSITIVE" = "true" ]]; then
+if [[ "$ZSH_ENABLE_CASE_SENSITIVE" = "true" ]]; then
     zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 else
     zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -34,16 +34,16 @@ zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
+zstyle ':completion:*' cache-path "$ZSH/cache"
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
 autoload -Uz compinit
-compinit -u -C -d "${ZSH_COMPDUMP:-$HOME/.zsh/zcompdump}"
+compinit -u -C -d "$ZSH/zcompdump"
 autoload -U +X bashcompinit && bashcompinit
 
-if [[ "$ENABLE_CORRECTION" = "true" ]]; then
+if [[ "$ZSH_ENABLE_CORRECTION" = "true" ]]; then
     alias cp='nocorrect cp'
     alias man='nocorrect man'
     alias mkdir='nocorrect mkdir'
@@ -74,7 +74,7 @@ function _hist_wrap() {
 # timestamp: "yyyy-mm-dd"
 alias history='_hist_wrap -i'
 
-HISTFILE=${HISTFILE:-$HOME/.zsh/history}
+HISTFILE=${HISTFILE:-$ZSH/history}
 HISTSIZE=1000000
 SAVEHIST=1000000
 
@@ -87,7 +87,7 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt share_history          # share command history data
 
 # vi-mode
-if [[ "$ENABLE_VI_MODE" = "true" ]]; then
+if [[ "$ZSH_ENABLE_VI_MODE" = "true" ]]; then
     bindkey -v
     export KEYTIMEOUT=1
 
@@ -97,7 +97,7 @@ if [[ "$ENABLE_VI_MODE" = "true" ]]; then
     bindkey '^s' history-incremental-search-forward
 
     function zle-line-init zle-keymap-select {
-        PROMPT_ARROW="${${KEYMAP/vicmd/❮}/(main|viins)/❯}"
+        ZSH_PROMPT_ARROW="${${KEYMAP/vicmd/❮}/(main|viins)/❯}"
         zle reset-prompt
     }
     zle -N zle-line-init
@@ -145,7 +145,7 @@ function git_commits_behind() {
 
 # source plugins defined in .zshrc
 for p in $plugins; do
-    source $ZSH/plugins/$p/$p.plugin.zsh
+    source $ZSH_FRAMEWORK/plugins/$p/$p.plugin.zsh
 done
 
 # nicer defaults
@@ -161,4 +161,4 @@ alias d="deletemark"
 alias l="showmarks"
 
 # source theme
-source $ZSH/theme.zsh
+source $ZSH_FRAMEWORK/theme.zsh
