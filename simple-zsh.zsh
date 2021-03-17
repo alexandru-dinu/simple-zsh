@@ -27,7 +27,7 @@ fi
 
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
