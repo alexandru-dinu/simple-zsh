@@ -5,9 +5,7 @@ done
 
 zmodload zsh/complist
 zmodload zsh/zle
-
 autoload -Uz colors && colors
-autoload -Uz compinit && compinit
 
 unsetopt menu_complete      # do not autoselect the first completion entry
 unsetopt flowcontrol        # disable start/stop flow control (^S/^Q)
@@ -36,7 +34,8 @@ zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-dir
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
-# load bash completion functions
+autoload -Uz compinit
+compinit -u -C -d "${ZSH_COMPDUMP:-$HOME/.zsh/zcompdump}"
 autoload -U +X bashcompinit && bashcompinit
 
 if [[ "$ENABLE_CORRECTION" = "true" ]]; then
@@ -70,7 +69,7 @@ function _hist_wrap() {
 # timestamp: "yyyy-mm-dd"
 alias history='_hist_wrap -i'
 
-HISTFILE=$HOME/.zsh_history
+HISTFILE=${HISTFILE:-$HOME/.zsh/history}
 HISTSIZE=1000000
 SAVEHIST=1000000
 

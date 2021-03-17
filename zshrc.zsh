@@ -10,7 +10,6 @@ ENABLE_GIT_INFO="true"
 ENABLE_CONDA_INFO="true"
 ENABLE_VI_MODE="true"
 
-# plugin array
 plugins=(zshmarks zsh-autosuggestions)
 
 source $ZSH/simple-zsh.zsh
