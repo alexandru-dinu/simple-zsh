@@ -1,4 +1,4 @@
-set -e
+set -ex
 
 SIMPLE_ZSH_DIR=$HOME/.zsh/simple-zsh
 
