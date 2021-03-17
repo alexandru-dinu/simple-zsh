@@ -7,6 +7,11 @@ zmodload zsh/complist
 zmodload zsh/zle
 autoload -Uz colors && colors
 
+# use the default ls color theme
+if [[ -z "$LS_COLORS" ]]; then
+    (( $+commands[dircolors] )) && eval "$(dircolors -b)"
+fi
+
 unsetopt menu_complete      # do not autoselect the first completion entry
 unsetopt flowcontrol        # disable start/stop flow control (^S/^Q)
 
