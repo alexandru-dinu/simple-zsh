@@ -1,15 +1,14 @@
-ZSH_COLOR_MAIN="159"
-ZSH_COLOR_INFO="007"
-ZSH_COLOR_DIRTY="167"
+ZSH_COLOR_MAIN="blue"
+ZSH_COLOR_INFO="247"
+ZSH_COLOR_DIRTY="203"
 
 function _git_info() {
     local br="$(git_current_branch)"
     if [[ -n $br ]]; then
         if [[ $(git_is_dirty) = "true" ]]; then
-            echo "%F{$ZSH_COLOR_DIRTY}$br%f"
-        else
-            echo "%F{$ZSH_COLOR_INFO}$br%f"
+            br+="%F{$ZSH_COLOR_DIRTY}*%f"
         fi
+        echo "%F{$ZSH_COLOR_INFO}$br%f"
     fi
 }
 
