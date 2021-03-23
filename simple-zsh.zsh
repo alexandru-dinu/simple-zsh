@@ -151,7 +151,7 @@ done
 alias ls='ls --color=tty'
 alias ll='ls -lah'
 alias diff='diff --color'
-alias grep='grep --color=auto --exclude-dir={.git}'
+alias grep='grep --color=auto --exclude-dir=.git'
 
 # zshmarks
 alias g="jump"
