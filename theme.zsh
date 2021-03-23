@@ -14,8 +14,8 @@ function _git_info() {
 
 function _conda_info() {
     # only show info on non-base envs
-    if [[ -n CONDA_DEFAULT_ENV && $CONDA_DEFAULT_ENV != "base" ]]; then
-        echo "%F{$ZSH_COLOR_INFO}$CONDA_DEFAULT_ENV%f "
+    if [[ -n "$CONDA_DEFAULT_ENV" && "$CONDA_DEFAULT_ENV" != "base" ]]; then
+        echo "%F{$ZSH_COLOR_INFO}($CONDA_DEFAULT_ENV)%f "
     fi
 }
 
