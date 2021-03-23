@@ -16,15 +16,14 @@ A minimalistic zsh framework combining ideas from [oh-my-zsh](https://github.com
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/alexandru-dinu/simple-zsh/main/install.sh)"
 ```
 
-
-## Plugins
-
+## Info
+- There is only one clean theme, with git and conda env info.
+- Vi-mode is enabled by default.
+- By default, the following plugins are enabled: [fzf](https://github.com/junegunn/fzf) for fuzzy searching, [zshmarks](https://github.com/jocelynmallon/zshmarks) for directory bookmarks and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) for faster history completions.
 - Plugins can be added in the [plugins](https://github.com/alexandru-dinu/simple-zsh/tree/main/plugins) directory, each one having an entrypoint `X/X.plugin.zsh`.
 - Enabling a plugin is done by adding it to the `plugins` array defined in `zshrc`.
-- By default, [fzf](https://github.com/junegunn/fzf), [zshmarks](https://github.com/jocelynmallon/zshmarks) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) are enabled.
 
-
-## Performance
+### Performance
 ```
 num  calls                time                       self            name
 -----------------------------------------------------------------------------------
