@@ -94,6 +94,7 @@ if [[ "$ZSH_ENABLE_VI_MODE" = "true" ]]; then
     bindkey '^e' end-of-line
     bindkey '^r' history-incremental-search-backward
     bindkey '^s' history-incremental-search-forward
+    bindkey '^?' backward-delete-char
 
     function zle-line-init zle-keymap-select {
         ZSH_PROMPT_ARROW="${${KEYMAP/vicmd/❮}/(main|viins)/❯}"
