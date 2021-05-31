@@ -85,7 +85,9 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt share_history          # share command history data
 
-# vi-mode
+# keybindings
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+
 if [[ "$ZSH_ENABLE_VI_MODE" = "true" ]]; then
     bindkey -v
     export KEYTIMEOUT=1
