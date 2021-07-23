@@ -127,24 +127,6 @@ function git_is_dirty() {
     [[ -n $ret ]] && echo "true" || echo "false"
 }
 
-function git_commits_ahead() {
-    if __git_prompt_git rev-parse --git-dir &>/dev/null; then
-        local commits="$(__git_prompt_git rev-list --count @{upstream}..HEAD 2>/dev/null)"
-        if [[ -n "$commits" && "$commits" != 0 ]]; then
-            echo "$commits"
-        fi
-    fi
-}
-
-function git_commits_behind() {
-    if __git_prompt_git rev-parse --git-dir &>/dev/null; then
-        local commits="$(__git_prompt_git rev-list --count HEAD..@{upstream} 2>/dev/null)"
-        if [[ -n "$commits" && "$commits" != 0 ]]; then
-            echo "$commits"
-        fi
-    fi
-}
-
 # source plugins defined in .zshrc
 for p in $plugins; do
     source $ZSH_FRAMEWORK/plugins/$p/$p.plugin.zsh
