@@ -1,15 +1,29 @@
 ZSH_COLOR_MAIN="cyan"
 ZSH_COLOR_INFO="247"
-ZSH_COLOR_DIRTY="203"
+ZSH_COLOR_DIRTY="red"
 
 function _git_info() {
-    local br="$(git_current_branch)"
-    if [[ -n $br ]]; then
-        if [[ $(git_is_dirty) = "true" ]]; then
-            br+="%F{$ZSH_COLOR_DIRTY}*%f"
-        fi
-        echo "%F{$ZSH_COLOR_INFO}$br%f "
-    fi
+    # not inside a git repo
+    [[ -z "$_GIT_INFO" ]] && return
+
+    # parse info into a map
+    declare -A info=( ${(@s: :)_GIT_INFO} )
+    declare -A comp
+
+    comp[branch]="%F{$ZSH_COLOR_INFO}$info[branch]%f"
+
+    [[ $info[dirty] = "true" ]] && comp[dirty]="%F{$ZSH_COLOR_DIRTY}*%f"
+    [[ $info[ahead] != "0" ]] && comp[ahead]="%F{$ZSH_COLOR_DIRTY}$info[ahead]⇡%f"
+    [[ $info[stash] != "0" ]] && comp[stash]="%F{$ZSH_COLOR_DIRTY}$info[stash]$%f"
+
+    local sepl="%F{$ZSH_COLOR_INFO}(%f"
+    local sepr="%F{$ZSH_COLOR_INFO})%f"
+    local symb=$( () { print -l "$*" } $comp[dirty] $comp[stash] $comp[ahead] )
+
+    local out=$comp[branch]
+    [[ -n $symb ]] && out+=$sepl$symb$sepr
+
+    echo $out
 }
 
 function _conda_info() {

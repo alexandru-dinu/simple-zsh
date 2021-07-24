@@ -5,6 +5,7 @@ done
 
 zmodload zsh/complist
 zmodload zsh/zle
+autoload -Uz add-zsh-hook
 autoload -Uz colors && colors
 
 # use the default ls color theme
@@ -106,31 +107,16 @@ if [[ "$ZSH_ENABLE_VI_MODE" = "true" ]]; then
     zle -N zle-keymap-select
 fi
 
-## git
-function __git_prompt_git() {
-    GIT_OPTIONAL_LOCKS=0 command git "$@"
-}
-
-function git_current_branch() {
-    local ref
-    ref=$(__git_prompt_git symbolic-ref --quiet HEAD 2> /dev/null)
-    local ret=$?
-    if [[ $ret != 0 ]]; then
-        [[ $ret == 128 ]] && return  # no git repo.
-        ref=$(__git_prompt_git rev-parse --short HEAD 2> /dev/null) || return
-    fi
-    echo ${ref#refs/heads/}
-}
-
-function git_is_dirty() {
-    local ret=$(__git_prompt_git status --porcelain 2> /dev/null | tail -1)
-    [[ -n $ret ]] && echo "true" || echo "false"
-}
+# async git info
+source $ZSH_FRAMEWORK/git.zsh
 
 # source plugins defined in .zshrc
 for p in $plugins; do
     source $ZSH_FRAMEWORK/plugins/$p/$p.plugin.zsh
 done
+
+# source theme
+source $ZSH_FRAMEWORK/theme.zsh
 
 # nicer defaults
 alias ls='ls --color=tty'
@@ -143,6 +129,3 @@ alias g="jump"
 alias s="bookmark"
 alias d="deletemark"
 alias l="showmarks"
-
-# source theme
-source $ZSH_FRAMEWORK/theme.zsh
