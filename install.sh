@@ -1,3 +1,4 @@
+# print each command and exit as soon as an error occurs
 set -ex
 
 SIMPLE_ZSH_DIR=$HOME/.zsh/simple-zsh

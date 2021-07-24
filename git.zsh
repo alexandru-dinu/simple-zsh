@@ -41,6 +41,7 @@ git_count_stash () {
 
 
 # Functions used by async worker
+
 _git_construct_info () {
     cd -q $1
 
