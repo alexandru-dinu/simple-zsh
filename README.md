@@ -2,8 +2,7 @@
 
 [![CI](https://github.com/alexandru-dinu/simple-zsh/actions/workflows/main.yml/badge.svg)](https://github.com/alexandru-dinu/simple-zsh/actions/workflows/main.yml)
 
-A minimalistic zsh framework combining ideas from [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and [pure](https://github.com/sindresorhus/pure).
-
+A minimalistic zsh framework.
 
 ## Getting Started
 
@@ -17,19 +16,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/alexandru-dinu/simple-zsh/
 ```
 
 ## Info
-- There is only one clean theme, with git and conda env info.
+- Async git info using [async.zsh](https://github.com/mafredri/zsh-async).
+- One clean theme, showing git and conda env info.
 - Vi-mode is enabled by default.
-- By default, the following plugins are enabled: [fzf](https://github.com/junegunn/fzf) for fuzzy searching, [zshmarks](https://github.com/jocelynmallon/zshmarks) for directory bookmarks and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) for faster history completions.
 - Plugins can be added in the [plugins](https://github.com/alexandru-dinu/simple-zsh/tree/main/plugins) directory, each one having an entrypoint `X/X.plugin.zsh`.
 - Enabling a plugin is done by adding it to the `plugins` array defined in `zshrc`.
+- The following plugins are enabled by default:
+    - [fzf](https://github.com/junegunn/fzf) for fuzzy searching.
+    - [zshmarks](https://github.com/jocelynmallon/zshmarks) for directory bookmarks.
+    - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) for faster history completions.
 
-### Performance
-```
-num  calls                time                       self            name
------------------------------------------------------------------------------------
- 1)    1          24.44    24.44   84.08%     24.44    24.44   84.08%  compinit
- 2)    1           4.17     4.17   14.34%      4.17     4.17   14.34%  colors
- 3)    1           0.26     0.26    0.90%      0.26     0.26    0.90%  add-zsh-hook
- 4)    1           0.18     0.18    0.61%      0.18     0.18    0.61%  (anon)
- 5)    1           0.02     0.02    0.07%      0.02     0.02    0.07%  bashcompinit
-```
+## Credits
+- Some sane defaults were inspired by [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and [pure](https://github.com/sindresorhus/pure).
