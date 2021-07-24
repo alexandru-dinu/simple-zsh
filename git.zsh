@@ -25,14 +25,14 @@ git_is_dirty () {
     [[ -n $ret ]] && echo "true" || echo "false"
 }
 
-git_commits_ahead () {
+git_count_ahead () {
     if git_is_repo; then
         local commits=$(__git_prompt_git rev-list --count @{upstream}..HEAD 2>/dev/null)
         echo ${commits:-0}
     fi
 }
 
-git_stash_count () {
+git_count_stash () {
     if git_is_repo; then
         local count=$(__git_prompt_git stash list | wc -l)
         echo ${count:-0}
@@ -53,8 +53,8 @@ _git_construct_info () {
     declare -A info=(
         [branch]="$(git_current_branch)"
         [dirty]="$(git_is_dirty)"
-        [ahead]="$(git_commits_ahead)"
-        [stash]="$(git_stash_count)"
+        [ahead]="$(git_count_ahead)"
+        [stash]="$(git_count_stash)"
     )
 
     echo ${(kv)info}
