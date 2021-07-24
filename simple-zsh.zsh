@@ -108,6 +108,9 @@ if [[ "$ZSH_ENABLE_VI_MODE" = "true" ]]; then
 fi
 
 # async git info
+source $ZSH_FRAMEWORK/async.zsh
+async_init
+
 source $ZSH_FRAMEWORK/git.zsh
 
 # source plugins defined in .zshrc

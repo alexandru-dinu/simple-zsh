@@ -1,8 +1,15 @@
-function __git_prompt_git() {
+# Self-contained git utils
+
+__git_prompt_git() {
     GIT_OPTIONAL_LOCKS=0 command git "$@"
 }
 
-function git_current_branch() {
+git_is_repo () {
+    __git_prompt_git rev-parse --git-dir &>/dev/null
+    return $?
+}
+
+git_current_branch () {
     local ref
     ref=$(__git_prompt_git symbolic-ref --quiet HEAD 2> /dev/null)
     local ret=$?
@@ -13,34 +20,33 @@ function git_current_branch() {
     echo ${ref#refs/heads/}
 }
 
-function git_is_dirty() {
+git_is_dirty () {
     local ret=$(__git_prompt_git status --porcelain 2> /dev/null | tail -1)
     [[ -n $ret ]] && echo "true" || echo "false"
 }
 
-function git_commits_ahead() {
-    if __git_prompt_git rev-parse --git-dir &>/dev/null; then
-        local commits="$(__git_prompt_git rev-list --count @{upstream}..HEAD 2>/dev/null)"
+git_commits_ahead () {
+    if git_is_repo; then
+        local commits=$(__git_prompt_git rev-list --count @{upstream}..HEAD 2>/dev/null)
         echo ${commits:-0}
     fi
 }
 
-function git_stash_count() {
-    if __git_prompt_git rev-parse --git-dir &>/dev/null; then
-        local count="$(__git_prompt_git stash list | wc -l)"
+git_stash_count () {
+    if git_is_repo; then
+        local count=$(__git_prompt_git stash list | wc -l)
         echo ${count:-0}
     fi
 }
 
 
-source $ZSH_FRAMEWORK/async.zsh
-async_init
-
+# Functions used by async worker
 _git_construct_info () {
     cd -q $1
 
-    if ! __git_prompt_git rev-parse --git-dir &>/dev/null; then
-        print ""
+    # not inside a repo, return empty string to signal there's no git info to show
+    if ! git_is_repo; then
+        echo ""
         return
     fi
 
@@ -51,7 +57,7 @@ _git_construct_info () {
         [stash]="$(git_stash_count)"
     )
 
-    print ${(kv)info}
+    echo ${(kv)info}
 }
 
 # callback function
