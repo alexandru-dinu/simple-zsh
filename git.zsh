@@ -42,7 +42,7 @@ _git_construct_info () {
     if ! __git_prompt_git rev-parse --git-dir &>/dev/null; then
         print ""
         return
-    fi;
+    fi
 
     declare -A info=(
         [branch]="$(git_current_branch)"
@@ -56,7 +56,20 @@ _git_construct_info () {
 
 # callback function
 _git_worker_callback() {
-    _GIT_INFO=$3 # stdout
+    local w_code=$2 w_stdout=$3
+
+    # check return codes indicating an error
+    # see https://github.com/mafredri/zsh-async/issues/42#issuecomment-716782220
+    if (( w_code == 2 )) || (( w_code == 3 )) || (( w_code == 130 )); then
+        async_stop_worker _git_worker
+        async_start_worker _git_worker
+        async_register_callback _git_worker _git_worker_callback
+        async_job _git_worker _git_construct_info $PWD
+    elif (( w_code )); then
+        async_job _git_worker _git_construct_info $PWD
+    fi
+
+    _GIT_INFO=$w_stdout
     zle reset-prompt
 }
 
