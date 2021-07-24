@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # print each command and exit as soon as an error occurs
 set -ex
 
@@ -10,4 +12,7 @@ git clone --depth=1 --recurse-submodules --remote-submodules \
 
 cp $SIMPLE_ZSH_DIR/zshrc.zsh $HOME/.zshrc
 
-exec zsh -i -c "echo Done!; exit"
+# only run if stdin is from a terminal
+if [ -t 0 ]; then
+    exec zsh -i -c "echo Done!; exit"
+fi

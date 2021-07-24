@@ -21,11 +21,9 @@ jobs:
         run: sudo apt-get update; sudo apt-get install zsh
       - name: Check syntax
         run: |
-          for file in ./simple-zsh.zsh \
+          for file in ./*.zsh \
                       ./plugins/*/*.plugin.zsh \
-                      ./plugins/*/_* \
-                      ./theme.zsh \
-                      ./zshrc.zsh; do
+                      ./plugins/*/_*; do
             zsh -n "$file" || return 1
           done
       - name: Test installer
