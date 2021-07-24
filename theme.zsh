@@ -23,13 +23,13 @@ function _git_info() {
     local out=$comp[branch]
     [[ -n $symb ]] && out+=$sepl$symb$sepr
 
-    echo $out
+    echo "$out "
 }
 
 function _conda_info() {
     # only show info on non-base envs
     if [[ -n "$CONDA_DEFAULT_ENV" && "$CONDA_DEFAULT_ENV" != "base" ]]; then
-        echo "%F{$ZSH_COLOR_INFO}($CONDA_DEFAULT_ENV)%f "
+        echo "%F{$ZSH_COLOR_INFO}(conda:$CONDA_DEFAULT_ENV)%f "
     fi
 }
 
