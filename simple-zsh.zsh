@@ -122,7 +122,7 @@ done
 source $ZSH_FRAMEWORK/theme.zsh
 
 # nicer defaults
-alias ls='ls --color=tty'
+alias ls='ls --color=tty --classify'
 alias ll='ls -lah'
 alias diff='diff --color'
 alias grep='grep --color=auto --exclude-dir=.git'
