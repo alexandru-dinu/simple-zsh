@@ -126,9 +126,3 @@ alias ls='ls --color=tty --classify'
 alias ll='ls -lah'
 alias diff='diff --color'
 alias grep='grep --color=auto --exclude-dir=.git'
-
-# zshmarks
-alias g="jump"
-alias b="bookmark"
-alias d="deletemark"
-alias l="showmarks"

@@ -32,7 +32,7 @@ __zshmarks_zgrep() {
     return 1
 }
 
-function bookmark() {
+bookmark() {
     local name=$1
     [ -z $name ] && name="${PWD##*/}"
 
@@ -55,7 +55,7 @@ function bookmark() {
     fi
 }
 
-function jump() {
+jump() {
     local name=$1
     local bookmark
 
@@ -67,7 +67,7 @@ function jump() {
     fi
 }
 
-function showmarks() {
+showmarks() {
     local bookmark_file="$(<"$BOOKMARKS_FILE")"
     local bookmark_array; bookmark_array=(${(f)bookmark_file});
     local name bookmark_path bookmark_line
@@ -83,7 +83,7 @@ function showmarks() {
     echo "$out" | sort -k1 | column -t -s':'
 }
 
-function deletemark()  {
+deletemark()  {
     local name=$1
 
     if [[ -z $name ]]; then
@@ -104,3 +104,9 @@ function deletemark()  {
         fi
     fi
 }
+
+
+alias g="jump"
+alias b="bookmark"
+alias d="deletemark"
+alias l="showmarks"
