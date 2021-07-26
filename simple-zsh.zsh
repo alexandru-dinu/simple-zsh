@@ -129,6 +129,6 @@ alias grep='grep --color=auto --exclude-dir=.git'
 
 # zshmarks
 alias g="jump"
-alias s="bookmark"
+alias b="bookmark"
 alias d="deletemark"
 alias l="showmarks"
