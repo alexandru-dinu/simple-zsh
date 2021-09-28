@@ -113,6 +113,12 @@ async_init
 
 source $ZSH_FRAMEWORK/git.zsh
 
+# 'conda activate' completion
+_conda_env_comp () {
+    _arguments "1: :(`ls $HOME/miniconda3/envs`)"
+}
+compdef _conda_env_comp activate
+
 # source plugins defined in .zshrc
 for p in $plugins; do
     source $ZSH_FRAMEWORK/plugins/$p/$p.plugin.zsh
