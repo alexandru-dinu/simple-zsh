@@ -2,6 +2,8 @@ ZSH_COLOR_MAIN="cyan"
 ZSH_COLOR_INFO="247"
 ZSH_COLOR_DIRTY="red"
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=11"
+
 __git_info () {
     # no info to show (e.g. not inside a repo)
     [[ -z "$_GIT_INFO" ]] && return
