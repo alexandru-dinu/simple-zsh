@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/alexandru-dinu/simple-zsh/actions/workflows/main.yml/badge.svg)](https://github.com/alexandru-dinu/simple-zsh/actions/workflows/main.yml)
 
-A minimalistic zsh framework.
+ A minimalistic zsh configuration.
 
 ## Getting Started
 
