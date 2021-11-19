@@ -26,5 +26,3 @@ jobs:
                       ./plugins/*/_*; do
             zsh -n "$file" || return 1
           done
-      - name: Test installer
-        run: sh ./install.sh
