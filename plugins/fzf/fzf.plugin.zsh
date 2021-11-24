@@ -1,10 +1,10 @@
-FZF_ROOT_DIR=${FZF_ROOT_DIR:-$HOME/.fzf}
-FZF_ZSH=$HOME/.fzf.zsh
+FZF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"/fzf
+FZF_ZSH="$FZF_DIR"/fzf.zsh
 
-if [[ ! -d $FZF_ROOT_DIR ]]; then
-    echo "fzf is not installed in $FZF_ROOT_DIR. Installing..."
-    git clone --depth=1 https://github.com/junegunn/fzf.git $FZF_ROOT_DIR
-    $FZF_ROOT_DIR/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+if [[ ! -d $FZF_DIR ]]; then
+    echo "fzf is not installed in $FZF_DIR. Installing..."
+    git clone --depth=1 https://github.com/junegunn/fzf.git $FZF_DIR
+    $FZF_DIR/install --xdg --key-bindings --completion --no-update-rc --no-bash --no-fish
 fi
 
 export FZF_DEFAULT_OPS="--extended"
