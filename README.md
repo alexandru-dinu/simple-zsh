@@ -12,16 +12,23 @@
 
 ### Install
 ```sh
-SIMPLE_ZSH_DIR=$HOME/.zsh/simple-zsh
+ZSH_FRAMEWORK=$HOME/.zsh/simple-zsh
 
-mkdir -p $SIMPLE_ZSH_DIR
+mkdir -p $ZSH_FRAMEWORK
 
 git clone --depth=1 --recurse-submodules --remote-submodules \
-    https://github.com/alexandru-dinu/simple-zsh.git $SIMPLE_ZSH_DIR
+    https://github.com/alexandru-dinu/simple-zsh.git $ZSH_FRAMEWORK
+```
 
-cp $SIMPLE_ZSH_DIR/zshrc.zsh $HOME/.zshrc
+Then, `simple-zsh.zsh` needs be sourced in `.zshrc`, e.g.:
 
-exec zsh -i -c "echo Done!; exit"
+```sh
+export ZSH=$HOME/.zsh
+export ZSH_FRAMEWORK=$ZSH/simple-zsh
+
+plugins=(fzf zshmarks zsh-autosuggestions)
+
+source $ZSH_FRAMEWORK/simple-zsh.zsh
 ```
 
 ## Info

@@ -63,7 +63,7 @@ _conda_info () {
 
 PROMPT=$'\n'
 PROMPT+='%F{$ZSH_COLOR_MAIN}%3~%f '
-[ $ZSH_ENABLE_GIT_INFO = "true" ] && PROMPT+='$(_git_info)'
-[ $ZSH_ENABLE_CONDA_INFO = "true" ] && PROMPT+='$(_conda_info)'
+PROMPT+='$(_git_info)'
+PROMPT+='$(_conda_info)'
 PROMPT+=$'\n'
 PROMPT+='%(?:%F{$ZSH_COLOR_MAIN}:%F{$ZSH_COLOR_DIRTY})${ZSH_PROMPT_ARROW:-❯}%f '
