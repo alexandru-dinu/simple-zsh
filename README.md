@@ -11,24 +11,40 @@
 - git 2.22+
 
 ### Install
+
+The config follows the [XDG Base Directory specification](https://wiki.archlinux.org/title/XDG_Base_Directory).
+You need the following env vars defined in `~/.zshenv`:
+
 ```sh
-ZSH_FRAMEWORK=$HOME/.zsh/simple-zsh
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
-mkdir -p $ZSH_FRAMEWORK
-
-git clone --depth=1 --recurse-submodules --remote-submodules \
-    https://github.com/alexandru-dinu/simple-zsh.git $ZSH_FRAMEWORK
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+export HISTFILE="$XDG_DATA_HOME"/zsh/history
 ```
 
-Then, `simple-zsh.zsh` needs be sourced in `.zshrc`, e.g.:
-
+Then you can install the config as such:
 ```sh
-export ZSH=$HOME/.zsh
-export ZSH_FRAMEWORK=$ZSH/simple-zsh
+CFG_DIR="$XDG_CONFIG_HOME"/zsh
+DATA_DIR="$XDG_DATA_HOME"/zsh
 
+rm -ri "$CFG_DIR"
+mkdir -p "$DATA_DIR"
+
+git clone --depth=1 --recurse-submodules --remote-submodules \
+    https://github.com/alexandru-dinu/simple-zsh.git $CFG_DIR
+```
+
+`$DATA_DIR` contains persistent, non-config files, e.g.:
+```
+bookmarks  history  zcompcache/  zcompdump
+```
+
+Finally, `simple-zsh.zsh` needs be sourced in `$ZDOTDIR/.zshrc`:
+```sh
 plugins=(fzf zshmarks zsh-autosuggestions)
-
-source $ZSH_FRAMEWORK/simple-zsh.zsh
+source $ZDOTDIR/simple-zsh.zsh
 ```
 
 ## Info
@@ -43,4 +59,4 @@ source $ZSH_FRAMEWORK/simple-zsh.zsh
     - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) for faster history completions.
 
 ## Credits
-- Some sane defaults were inspired by [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and [pure](https://github.com/sindresorhus/pure).
+- Some sensible defaults were inspired by [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and [pure](https://github.com/sindresorhus/pure).

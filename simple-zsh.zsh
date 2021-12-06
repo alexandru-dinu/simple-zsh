@@ -1,13 +1,13 @@
 # add plugin-dirs to fpath
 for p in $plugins; do
-    fpath=($ZSH_FRAMEWORK/plugins/$p $fpath)
+    fpath=($ZDOTDIR/plugins/$p $fpath)
 done
 
 zmodload zsh/complist
 zmodload zsh/zle
 autoload -Uz add-zsh-hook
 autoload -Uz colors && colors
-autoload -Uz compinit && compinit -u -C -d "$ZSH/zcompdump"
+autoload -Uz compinit && compinit -u -C -d "$XDG_DATA_HOME/zsh/zcompdump"
 autoload -U +X bashcompinit && bashcompinit
 
 # use the default ls color theme
@@ -26,8 +26,10 @@ setopt pushd_ignore_dups    # don't push multiple copies of the same dir
 setopt pushdminus           # exchange the meaning of +/- when used with a number to specify a dir in the stack
 setopt prompt_subst         # enable parameter expansion
 
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path "$XDG_DATA_HOME/zsh/zcompcache"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # enable correction
@@ -39,7 +41,6 @@ alias mv='nocorrect mv'
 alias sudo='nocorrect sudo'
 
 ## history
-HISTFILE=${HISTFILE:-$ZSH/history}
 HISTSIZE=1000000
 SAVEHIST=1000000
 
@@ -71,17 +72,17 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # async git info
-source $ZSH_FRAMEWORK/async.zsh
+source $ZDOTDIR/async.zsh
 async_init
-source $ZSH_FRAMEWORK/git.zsh
+source $ZDOTDIR/git.zsh
 
 # source plugins defined in .zshrc
 for p in $plugins; do
-    source $ZSH_FRAMEWORK/plugins/$p/$p.plugin.zsh
+    source $ZDOTDIR/plugins/$p/$p.plugin.zsh
 done
 
 # source theme
-source $ZSH_FRAMEWORK/theme.zsh
+source $ZDOTDIR/theme.zsh
 
 # nicer defaults
 alias ls='ls --color=tty --classify'

@@ -5,7 +5,7 @@
 #       VERSION:  1.7.1
 # ------------------------------------------------------------------------------
 
-export BOOKMARKS_FILE=${BOOKMARKS_FILE:-$HOME/.zsh/bookmarks}
+export BOOKMARKS_FILE=${BOOKMARKS_FILE:-$HOME/.local/share/zsh/bookmarks}
 
 if [[ -L $BOOKMARKS_FILE ]]; then
     BOOKMARKS_FILE=$(readlink $BOOKMARKS_FILE)
