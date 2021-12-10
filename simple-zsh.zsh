@@ -32,6 +32,8 @@ zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path "$XDG_DATA_HOME/zsh/zcompcache"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
+_comp_options+=(globdots)
+
 # enable correction
 setopt correct_all
 alias cp='nocorrect cp'
