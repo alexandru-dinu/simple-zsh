@@ -22,10 +22,11 @@ _gen_fzf_default_opts() {
     local cyan="#2aa198"
     local green="#859900"
 
-    export FZF_DEFAULT_OPTS="
+    local colors="
         --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
         --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
     "
+    export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} ${colors}"
 }
 _gen_fzf_default_opts
 

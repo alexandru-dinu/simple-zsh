@@ -7,6 +7,4 @@ if [[ ! -d $FZF_DIR ]]; then
     $FZF_DIR/install --xdg --key-bindings --completion --no-update-rc --no-bash --no-fish
 fi
 
-export FZF_DEFAULT_OPS="--extended"
-
 [ -f $FZF_ZSH ] && source $FZF_ZSH
