@@ -27,7 +27,7 @@ setopt pushdminus           # exchange the meaning of +/- when used with a numbe
 setopt prompt_subst         # enable parameter expansion
 
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path "$XDG_DATA_HOME/zsh/zcompcache"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
