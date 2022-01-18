@@ -1,36 +1,7 @@
 ZSH_COLOR_MAIN="cyan"
 ZSH_COLOR_INFO="247"
 ZSH_COLOR_DIRTY="red"
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=11"
 
-# solarized dark colors for fzf
-_gen_fzf_default_opts() {
-    local base03="#002b36"
-    local base02="#073642"
-    local base01="#586e75"
-    local base00="#657b83"
-    local base0="#839496"
-    local base1="#93a1a1"
-    local base2="#eee8d5"
-    local base3="#fdf6e3"
-    local yellow="#b58900"
-    local orange="#cb4b16"
-    local red="#dc322f"
-    local magenta="#d33682"
-    local violet="#6c71c4"
-    local blue="#268bd2"
-    local cyan="#2aa198"
-    local green="#859900"
-
-    local colors="
-        --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
-        --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
-    "
-    export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} ${colors}"
-}
-_gen_fzf_default_opts
-
-# prompt
 _git_info () {
     # no info to show (e.g. not inside a repo)
     [[ -z "$_GIT_INFO" ]] && return
