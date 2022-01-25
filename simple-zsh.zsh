@@ -73,6 +73,14 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+# copy selection to clipboard
+function vi-yank-xclip {
+    zle vi-yank
+    echo "$CUTBUFFER" | xsel --clipboard
+}
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
 # async git info
 source $ZDOTDIR/async.zsh
 async_init
