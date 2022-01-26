@@ -1,6 +1,6 @@
-# Simple zsh
+# zsh config
 
-[![CI](https://github.com/alexandru-dinu/simple-zsh/actions/workflows/main.yml/badge.svg)](https://github.com/alexandru-dinu/simple-zsh/actions/workflows/main.yml)
+[![CI](https://github.com/alexandru-dinu/zsh-config/actions/workflows/main.yml/badge.svg)](https://github.com/alexandru-dinu/zsh-config/actions/workflows/main.yml)
 
  A minimalistic zsh configuration.
 
@@ -33,7 +33,7 @@ rm -ri "$CFG_DIR"
 mkdir -p "$DATA_DIR"
 
 git clone --depth=1 --recurse-submodules --remote-submodules \
-    https://github.com/alexandru-dinu/simple-zsh.git $CFG_DIR
+    https://github.com/alexandru-dinu/zsh-config.git $CFG_DIR
 ```
 
 `$DATA_DIR` contains persistent, non-config files, e.g.:
@@ -41,17 +41,17 @@ git clone --depth=1 --recurse-submodules --remote-submodules \
 bookmarks  history  zcompcache/  zcompdump
 ```
 
-Finally, `simple-zsh.zsh` needs be sourced in `$ZDOTDIR/.zshrc`:
+Finally, `config.zsh` needs to be sourced in `$ZDOTDIR/.zshrc`:
 ```sh
 plugins=(fzf zshmarks zsh-autosuggestions)
-source $ZDOTDIR/simple-zsh.zsh
+source $ZDOTDIR/config.zsh
 ```
 
 ## Info
 - Async git info using [async.zsh](https://github.com/mafredri/zsh-async).
 - One clean theme, showing git and conda env info.
 - Vi-mode is enabled by default.
-- Plugins can be added in the [plugins](https://github.com/alexandru-dinu/simple-zsh/tree/main/plugins) directory, each one having an entrypoint `X/X.plugin.zsh`.
+- Plugins can be added in the [plugins](./plugins) directory, each one having an entrypoint `X/X.plugin.zsh`.
 - Enabling a plugin is done by adding it to the `plugins` array defined in `zshrc`.
 - The following plugins are enabled by default:
     - [fzf](https://github.com/junegunn/fzf) for fuzzy searching.
