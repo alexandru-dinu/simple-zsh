@@ -50,7 +50,7 @@ bookmark() {
         echo $bookmark >> $BOOKMARKS_FILE
         echo "Bookmark saved: $name -> $cur_dir"
     else
-        echo "Bookmark already existed."
+        echo "Bookmark already exists: $name -> $cur_dir"
         return 1
     fi
 }
