@@ -66,6 +66,12 @@ bindkey '^r' history-incremental-search-backward
 bindkey '^s' history-incremental-search-forward
 bindkey '^?' backward-delete-char
 
+# use <C-g> to edit current command in $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^g' edit-command-line
+bindkey -M vicmd '^g' edit-command-line
+
 function zle-line-init zle-keymap-select {
     ZSH_PROMPT_ARROW="${${KEYMAP/vicmd/❮}/(main|viins)/❯}"
     zle reset-prompt
