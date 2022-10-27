@@ -49,7 +49,7 @@ source $ZDOTDIR/config.zsh
 
 ## Info
 - Async git info using [async.zsh](https://github.com/mafredri/zsh-async).
-- One clean theme, showing git and conda env info.
+- One clean theme, showing git and conda / venv info.
 - Vi-mode is enabled by default.
 - Plugins can be added in the [plugins](./plugins) directory, each one having an entrypoint `X/X.plugin.zsh`.
 - Enabling a plugin is done by adding it to the `plugins` array defined in `zshrc`.

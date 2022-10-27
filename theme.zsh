@@ -33,9 +33,18 @@ _conda_info () {
     fi
 }
 
+_venv_info () {
+    # when default prompt info is disabled, use ours
+    if [[ -n "$VIRTUAL_ENV_DISABLE_PROMPT" && -n "$VIRTUAL_ENV" ]]; then
+        # delete longest match of */ from venv (i.e. keep the basename)
+        echo "%F{$ZSH_COLOR_INFO}venv:${VIRTUAL_ENV##*/}%f "
+    fi
+}
+
 PROMPT=$'\n'
 PROMPT+='%F{$ZSH_COLOR_MAIN}%3~%f '
 PROMPT+='$(_git_info)'
 PROMPT+='$(_conda_info)'
+PROMPT+='$(_venv_info)'
 PROMPT+=$'\n'
 PROMPT+='%(?:%F{$ZSH_COLOR_MAIN}:%F{$ZSH_COLOR_DIRTY})${ZSH_PROMPT_ARROW:-❯}%f '
